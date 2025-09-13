@@ -11,7 +11,7 @@ from src.logger import logging
 
 @dataclass
 class ImageCaptureConfig:
-    stored_path=os.path.join("data","Photos")
+    stored_path=os.path.join("captured_data","Photos")
 
 class ImageCapture:
     def __init__(self):

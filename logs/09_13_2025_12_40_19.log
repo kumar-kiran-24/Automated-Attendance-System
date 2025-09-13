@@ -1,0 +1,4 @@
+2025-09-13 12:40:19,498 - INFO - root - cnn_model.py:21 - CNN model training started
+2025-09-13 12:40:19,498 - INFO - root - data_transformer.py:22 - Data transformation started
+2025-09-13 12:40:19,596 - INFO - root - data_transformer.py:44 - Classes found: ['rohit', 'virat']
+2025-09-13 12:40:19,629 - INFO - root - data_transformer.py:51 - Data transformation completed successfully

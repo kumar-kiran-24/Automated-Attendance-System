@@ -12,7 +12,7 @@ from src.exception import CustomException
 
 @dataclass
 class VideoRecoredrConfig:
-      stored_path: str = os.path.join("data", "video")
+      stored_path: str = os.path.join("captured_data", "video")
 
 
 class VideoRecorder:
@@ -67,9 +67,9 @@ class VideoRecorder:
         except Exception as e:
             raise CustomException(e,sys)
         
-# if __name__=="__main__":
-#     vc=VideoRecorder()
-#     vc.initiate_videorecorder()
+if __name__=="__main__":
+    vc=VideoRecorder()
+    vc.initiate_videorecorder()
             
 
 
