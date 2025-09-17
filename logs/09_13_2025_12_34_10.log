@@ -1,3 +1,0 @@
-2025-09-13 12:34:12,909 - INFO - root - cnn_model.py:21 - CNN model training started
-2025-09-13 12:34:12,910 - INFO - root - data_transformer.py:27 - Data Transformation initiated
-2025-09-13 12:34:12,910 - INFO - root - data_transformer.py:67 - Data Transformation completed

@@ -1,6 +1,0 @@
-2025-09-13 14:54:19,349 - INFO - root - cnn_model.py:23 - CNN model training started
-2025-09-13 14:54:19,349 - INFO - root - data_transformer.py:22 - Data transformation started
-2025-09-13 14:54:19,593 - INFO - root - data_transformer.py:44 - Classes found: ['rohit', 'virat']
-2025-09-13 14:54:19,636 - INFO - root - data_transformer.py:51 - Data transformation completed successfully
-2025-09-13 14:54:24,559 - WARNING - absl - saving_api.py:83 - You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`. 
-2025-09-13 14:54:25,288 - INFO - root - cnn_model.py:54 - CNN model training completed and model saved as cnn_model.h5

@@ -1,3 +1,0 @@
-2025-09-13 12:39:59,546 - INFO - root - data_transformer.py:22 - Data transformation started
-2025-09-13 12:39:59,665 - INFO - root - data_transformer.py:44 - Classes found: ['rohit', 'virat']
-2025-09-13 12:39:59,725 - INFO - root - data_transformer.py:51 - Data transformation completed successfully

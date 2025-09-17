@@ -3,8 +3,8 @@ import sys
 from dataclasses import dataclass
 import tensorflow as tf
 
-from src.exception import CustomException
-from src.logger import logging
+from src.utils.exception import CustomException
+from src.utils.logger import logging
 
 
 @dataclass

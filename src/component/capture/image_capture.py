@@ -5,8 +5,8 @@ import time
 from dataclasses import dataclass
 from datetime import datetime
 
-from src.exception import CustomException
-from src.logger import logging
+from src.utils.exception import CustomException
+from src.utils.logger import logging
 
 
 @dataclass
@@ -21,7 +21,7 @@ class ImageCapture:
     def intiateImageCapture(self):
 
         base_dir=self.imgcapcon.stored_path
-        num_images=50
+        num_images=5
         delay=0.5
 
         timestamp=datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
@@ -31,7 +31,7 @@ class ImageCapture:
         if not cap.isOpened():
             raise CustomException("unable to open the camera")
         
-        logging.info("Saart the capture the video")
+        logging.info("Start the capture the video")
 
         count=0
         zoom_factors = [1.0, 1.2, 1.5]   # Normal, zoom 1.2x, zoom 1.5x
@@ -81,10 +81,12 @@ class ImageCapture:
             time.sleep(delay)
         cap.release()
         cv2.destroyAllWindows()
+        
 
         
 
         logging.info(f"photos capture is finish and stored in {output_dir}")
+        return output_dir
 
 
 if __name__=="__main__":

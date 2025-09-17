@@ -1,0 +1,6 @@
+numpy
+pandas
+sk-learn
+facenet
+arcface
+cv2
