@@ -1,0 +1,13 @@
+2025-09-17 18:38:51,562 - INFO - root - face_recognizer.py:59 - Loaded embeddings for persons: ['rohit', 'virat']
+2025-09-17 18:38:54,992 - WARNING - tensorflow - module_wrapper.py:149 - From C:\Users\kiran\AppData\Local\Programs\Python\Python313\Lib\site-packages\tf_keras\src\losses.py:2976: The name tf.losses.sparse_softmax_cross_entropy is deprecated. Please use tf.compat.v1.losses.sparse_softmax_cross_entropy instead.
+
+2025-09-17 18:38:57,062 - INFO - root - face_recognizer.py:59 - Loaded embeddings for persons: ['rohit', 'virat']
+2025-09-17 18:38:57,063 - INFO - root - video_capture.py:42 - Started the recording of the video
+2025-09-17 18:38:57,661 - INFO - root - video_capture.py:64 - Recording started, saving in captured_data\video\2025_09_17_18_38_57.mp4
+2025-09-17 18:39:03,654 - INFO - root - video_capture.py:83 - Recording finished and saved.
+2025-09-17 18:39:03,796 - INFO - root - video_to_image.py:42 - Done! Extracted 28 frames to 'raw_frames\2025_09_17_18_38_57'
+2025-09-17 18:39:03,796 - INFO - root - image_selector.py:22 - Initialize the image selection process
+2025-09-17 18:41:18,082 - INFO - root - image_selector.py:65 - Finished selecting images
+2025-09-17 18:41:20,357 - INFO - root - attendence_counter.py:29 - Mark attendance process started
+2025-09-17 18:41:20,357 - INFO - root - attendence_counter.py:57 - Present Students: []
+2025-09-17 18:41:20,357 - INFO - root - attendence_counter.py:58 - Absent Students: ['Alice', 'Bob', 'Charlie', 'David', 'virat', 'rohit']
