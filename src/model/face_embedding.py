@@ -11,8 +11,8 @@ from src.utils.logger import logging
 
 @dataclass
 class FaecEmbeddingConfig:
-    train_path: str = os.path.join("data", "train")
-    val_path: str = os.path.join("data", "val")
+    train_path: str = os.path.join("data", "students")
+    val_path: str = os.path.join("data", "students")
     output_path: str = os.path.join("C:/ht/embeddings")   # <--- embeddings will be stored here
 
 

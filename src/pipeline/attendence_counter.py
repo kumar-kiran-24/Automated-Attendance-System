@@ -69,11 +69,11 @@ if __name__ == "__main__":
 
     # Get results from your recognizer
     recognizer_results = obj.facerecognizer.recognize_images_in_folder(
-        folder_path=r"C:\ht\captured_data\Photos"  
+        folder_path=r"C:\ht\outputs\2025_09_18_12_34_22"  
     )
 
     # Define all students
-    all_students = ["Alice", "Bob", "Charlie", "David", "virat", "rohit"]
+    all_students = ["kiran","manoj","prasana","virat", "rohit","suhas"]
 
     # Run attendance
     present, absent = obj.initiate_mark_attendance(

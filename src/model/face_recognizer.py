@@ -12,12 +12,12 @@ from src.utils.exception import CustomException
 # Path to embeddings (already created)
 EMBEDDINGS_PATH = "C:/ht/embeddings"
 MODEL_PATH = "C:/ht/models"
-THRESHOLD = 0.6   # similarity threshold
+THRESHOLD = 0.5   # similarity threshold
 
 
 @dataclass
 class FaceRecognizerConfig:
-    captured_data_path: str = r"C:\ht\captured_data\Photos"
+    captured_data_path: str = r"C:\ht\raw_frames\2025_09_18_12_34_22"
 
 
 class FaceRecognizer:
@@ -124,7 +124,7 @@ class FaceRecognizer:
 
 if __name__ == "__main__":
     fr = FaceRecognizer()
-    folder = r"C:\ht\captured_data\Photos"   # Replace with your input folder path
+    folder = r"C:\ht\raw_frames\2025_09_18_12_34_22"   # Replace with your input folder path
     results = fr.recognize_images_in_folder(folder)
     print("\nFinal Results:", results)
     logging.info(results)

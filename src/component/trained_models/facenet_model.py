@@ -8,15 +8,13 @@ from keras.models import load_model
 import cv2
 
 
-# ----------------------
+
 # Load FaceNet model
-# ----------------------
+
 facenet_model = load_model("facenet_keras.h5")
 print("[INFO] FaceNet model loaded.")
 
-# ----------------------
-# Helper functions
-# ----------------------
+
 def extract_face(filename, required_size=(160, 160)):
     """Detect and extract face using MTCNN"""
     image = Image.open(filename)
@@ -42,9 +40,7 @@ def get_embedding(model, face_pixels):
     yhat = model.predict(sample)
     return yhat[0]
 
-# ----------------------
-# Step 1: Load dataset embeddings
-# ----------------------
+
 dataset_path = "dataset"
 X, y = [], []
 
@@ -65,9 +61,9 @@ y = np.asarray(y)
 
 print(f"[INFO] Loaded {X.shape[0]} face embeddings.")
 
-# ----------------------
-# Step 2: Train classifier (SVM)
-# ----------------------
+
+# Train classifier (SVM)
+
 encoder = LabelEncoder()
 y_encoded = encoder.fit_transform(y)
 
@@ -78,9 +74,8 @@ model_svm = SVC(kernel="linear", probability=True)
 model_svm.fit(X, y_encoded)
 print("[INFO] SVM classifier trained.")
 
-# ----------------------
 # Step 3: Recognize faces in group photo
-# ----------------------
+
 group_img = cv2.imread("group_photo.jpg")
 rgb_img = cv2.cvtColor(group_img, cv2.COLOR_BGR2RGB)
 
