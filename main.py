@@ -13,6 +13,9 @@ import json
 from datetime import datetime, timezone
 import os
 
+# New import
+from flask import Flask, jsonify
+
 
 @dataclass
 class MainConfig:
@@ -51,14 +54,7 @@ class Main:
             )
             print("Frames saved at:", path_to_raw_frames)
 
-            # Step 3: (Optional) Select images with faces
-            # If ImageSelector is required, uncomment and adjust
-            # path_to_selected_images = self.image_selector.extract_faces_from_folder(
-            #     input_folder=path_to_raw_frames,
-            #     output_base="C:/ht/selected_images"
-            # )
-            # print("Selected images path:", path_to_selected_images)
-
+            # Step 3: Recognize faces
             print("\n\nStart recognizing the images in the selected path\n\n")
             students_per_image = self.face_recognizer.recognize_images_in_folder(
                 folder_path=path_to_raw_frames
@@ -75,7 +71,7 @@ class Main:
             print("Present:", present)
             print("Absent:", absent)
 
-            # Step 5: Save attendance
+            # Step 5: Save attendance JSON
             base_dir = "C:/ht/result"
             os.makedirs(base_dir, exist_ok=True)
 
@@ -85,33 +81,65 @@ class Main:
 
             file_path = os.path.join(folder_path, "attendance.json")
 
-            # Save structured JSON: each student with status + recorded_at
-            result = {}
+            # Student USN mapping
+            usn = {
+                "kiran": "4ALIS024",
+                "manoj": "4AL22IS400",
+                "suhas": "4AL23IS059",
+                "parsana": "4AL23IS042"
+            }
+
+            # Example lists
+         
+
+            recorded_at = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
+            # Collect results
+            result = []
+
             for student in present:
-                result[student] = {
-                    "usn": "NA",
+                result.append({
+                    "name": student,
+                    "usn": usn.get(student, "NA"),
                     "status": "present",
                     "recorded_at": recorded_at,
-                }
+                })
+
             for student in absent:
-                result[student] = {
-                    "usn": "NA",
+                result.append({
+                    "name": student,
+                    "usn": usn.get(student, "NA"),
                     "status": "absent",
                     "recorded_at": recorded_at,
-                }
+                })
 
+            # Save to JSON
             with open(file_path, "w") as f:
                 json.dump(result, f, indent=4)
 
             print("Saved at:", file_path)
 
-            return f"Absent: {absent}\nPresent: {present}"
+            return result  # ✅ Return JSON instead of string
 
         except Exception as e:
             logging.error("Error in initiate_main")
             raise CustomException(e, sys)
 
 
-if __name__ == "__main__":
+# Flask app added here
+app = Flask(__name__)
+
+@app.route("/get_attendance", methods=["GET"])
+def get_attendance():
     obj = Main()
-    obj.initiate_main()
+    data = obj.initiate_main()
+    return jsonify(data)
+
+
+if __name__ == "__main__":
+    # Run Flask app
+    # app.run(host="0.0.0.0", port=5000, debug=True)
+    obj=Main()
+    result=obj.initiate_main()
+    print(result)
+    
