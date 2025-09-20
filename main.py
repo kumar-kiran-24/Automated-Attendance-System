@@ -12,6 +12,7 @@ from dataclasses import dataclass
 import json
 from datetime import datetime, timezone
 import os
+import requests
 
 # New import
 from flask import Flask, jsonify
@@ -62,14 +63,14 @@ class Main:
             print("\n\nEnd recognizing the images\n\n")
 
             # Step 4: Mark attendance
-            all_students = ["kiran", "prasana", "suhas", "manoj"]
+            all_students = ["kiran", "prasana", "suhas", "manoj","avinash","4AL23CD055"]
 
-            present, absent = self.attendance_counter.initiate_mark_attendance(
+            Present, Absent = self.attendance_counter.initiate_mark_attendance(
                 students_per_image, all_students, threshold=2, min_conf=0.4
             )
 
-            print("Present:", present)
-            print("Absent:", absent)
+            print("Present:", Present)
+            print("Absent:", Absent)
 
             # Step 5: Save attendance JSON
             base_dir = "C:/ht/result"
@@ -83,31 +84,32 @@ class Main:
 
             # Student USN mapping
             usn = {
-                "kiran": "4ALIS024",
+                "kiran": "4AL23IS024",
                 "manoj": "4AL22IS400",
-                "suhas": "4AL23IS059",
-                "parsana": "4AL23IS042"
+                "suhas": "4AL23IS050",
+                "prasana": "4AL23IS042",
+                "avinash":"4AL23IS011",
+                "4AL23CD055":"4AL23CD055"
+
             }
 
             # Example lists
          
 
-            recorded_at = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            recorded_at = "2025-09-18T03:45:00+00:00"
 
             # Collect results
             result = []
 
-            for student in present:
+            for student in Present:
                 result.append({
-                    "name": student,
                     "usn": usn.get(student, "NA"),
                     "status": "present",
                     "recorded_at": recorded_at,
                 })
 
-            for student in absent:
+            for student in Absent:
                 result.append({
-                    "name": student,
                     "usn": usn.get(student, "NA"),
                     "status": "absent",
                     "recorded_at": recorded_at,
@@ -117,23 +119,28 @@ class Main:
             with open(file_path, "w") as f:
                 json.dump(result, f, indent=4)
 
+            r = requests.post("http://localhost:8080/attendance/bulk", json=result)
+             
+            print(r)
             print("Saved at:", file_path)
+            print(result)
+            print(r.json())
 
-            return result  # ✅ Return JSON instead of string
+            return result  # Return JSON instead of string
 
         except Exception as e:
             logging.error("Error in initiate_main")
             raise CustomException(e, sys)
 
 
-# Flask app added here
-app = Flask(__name__)
+# # Flask app added here
+# app = Flask(__name__)
 
-@app.route("/get_attendance", methods=["GET"])
-def get_attendance():
-    obj = Main()
-    data = obj.initiate_main()
-    return jsonify(data)
+# @app.route("/get_attendance", methods=["GET"])
+# def get_attendance():
+#     obj = Main()
+#     data = obj.initiate_main()
+#     return jsonify(data)
 
 
 if __name__ == "__main__":

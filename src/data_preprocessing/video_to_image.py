@@ -4,11 +4,13 @@ import sys
 from src.utils.logger import logging
 from src.utils.exception import CustomException
 
+
 class VideoToImage:
 
-    def video_to_frames(self, video_path, frame_skip=1):
+    @staticmethod
+    def video_to_frames(video_path, frame_skip=1):
         """
-        Convert video into frames (images) and save in raw_frames/<video_name>/.
+        Convert a video into frames (images) and save in raw_frames/<video_name>/.
         """
         try:
             # Get video name without extension
@@ -45,9 +47,37 @@ class VideoToImage:
         except Exception as e:
             raise CustomException(str(e), sys.exc_info())
 
+    @staticmethod
+    def process_folder(folder_path, frame_skip=1):
+        """
+        Process all videos in a folder and extract frames.
+        """
+        try:
+            if not os.path.exists(folder_path):
+                raise CustomException(f"Folder not found: {folder_path}", sys.exc_info())
+
+            supported_exts = (".mp4", ".avi", ".mov", ".mkv")
+            results = {}
+
+            for file in os.listdir(folder_path):
+                if file.lower().endswith(supported_exts):
+                    video_path = os.path.join(folder_path, file)
+                    logging.info(f"Processing video: {video_path}")
+                    output = VideoToImage.video_to_frames(video_path, frame_skip)
+                    results[file] = output
+
+            return results
+
+        except Exception as e:
+            raise CustomException(str(e), sys.exc_info())
 
 
 # Example usage
 if __name__ == "__main__":
-    video_path = r"C:\ht\captured_data\video\2025_09_17_00_54_31.mp4"  # your video path
-    VideoToImage.video_to_frames(video_path, frame_skip=5)  # saves every 5th frame
+    # Example 1: Single video
+    video_path = r"C:\ht\captured_data\video\2025_09_17_00_54_31.mp4"
+    VideoToImage.video_to_frames(video_path, frame_skip=5)
+
+    # Example 2: All videos in a folder
+    folder_path = r"C:\ht\captured_data\video"
+    VideoToImage.process_folder(folder_path, frame_skip=10)

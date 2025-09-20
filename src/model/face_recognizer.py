@@ -7,6 +7,7 @@ from dataclasses import dataclass
 
 from src.utils.logger import logging
 from src.utils.exception import CustomException
+from insightface.app import FaceAnalysis
 
 
 # Path to embeddings (already created)

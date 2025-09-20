@@ -70,15 +70,14 @@ class VideoRecorder:
                     break
                 out.write(frame)
 
-                if show_preview:  # only show if enabled
-                    cv2.imshow("Recording", frame)
-                    if cv2.waitKey(1) & 0xFF == ord("q"):  # press 'q' to stop early
-                        break
+                # Always show recording window
+                cv2.imshow("Recording", frame)
+                if cv2.waitKey(1) & 0xFF == ord("q"):  # press 'q' to stop early
+                    break
 
             cap.release()
             out.release()
-            if show_preview:
-                cv2.destroyAllWindows()
+            cv2.destroyAllWindows()
 
             logging.info("Recording finished and saved.")
             return file_path
