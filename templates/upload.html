@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Upload Student Images</title>
+</head>
+<body>
+    <h2>Upload Student Photos</h2>
+    <form action="/upload_photos" method="POST" enctype="multipart/form-data">
+        USN: <input type="text" name="usn" required><br><br>
+        Images: <input type="file" name="images" multiple required><br><br>
+        <input type="submit" value="Upload">
+    </form>
+</body>
+</html>

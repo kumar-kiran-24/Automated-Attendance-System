@@ -1,0 +1,32 @@
+[
+    {
+        "usn": "4AL23IS024",
+        "status": "present",
+        "recorded_at": "2025-09-18T03:45:00+00:00"
+    },
+    {
+        "usn": "4AL23IS050",
+        "status": "present",
+        "recorded_at": "2025-09-18T03:45:00+00:00"
+    },
+    {
+        "usn": "4AL23IS042",
+        "status": "absent",
+        "recorded_at": "2025-09-18T03:45:00+00:00"
+    },
+    {
+        "usn": "4AL22IS400",
+        "status": "absent",
+        "recorded_at": "2025-09-18T03:45:00+00:00"
+    },
+    {
+        "usn": "4AL23IS011",
+        "status": "absent",
+        "recorded_at": "2025-09-18T03:45:00+00:00"
+    },
+    {
+        "usn": "4AL23CD055",
+        "status": "absent",
+        "recorded_at": "2025-09-18T03:45:00+00:00"
+    }
+]
