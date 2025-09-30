@@ -29,21 +29,21 @@ class AttendanceMarker:
             logging.info("Mark attendance process started")
             count_dict = defaultdict(int)
 
-            # Loop through dictionary: image_name -> recognized_list
+            # Loop through dictionary: image_name recognized_list
             for image_name, recognized_list in recognizer_results.items():
                 for student in set(recognized_list):  # avoid duplicate count per image
-                    # Example: "virat (0.72)" -> name="virat", conf=0.72
+                    
                     parts = student.split(" (")
                     student_name = parts[0].strip()
                     conf = (
                         float(parts[1].replace(")", "")) if len(parts) > 1 else 1.0
                     )
 
-                    # Skip unknowns and low confidence
+                    # Skip unknowns 
                     if student_name != "Unknown" and conf >= min_conf:
                         count_dict[student_name] += 1
 
-            print("DEBUG: Count Dict =", dict(count_dict))  # Debug print
+            print("DEBUG: Count Dict =", dict(count_dict))  # Debug 
 
             present_students = []
             absent_students = []

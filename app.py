@@ -2,11 +2,11 @@ from flask import Flask, request, jsonify, render_template
 import os
 import threading
 from werkzeug.utils import secure_filename
-from flask_cors import CORS   # <-- Import CORS
+from flask_cors import CORS   #Import CORS
 from src.model.face_embedding import FaecEmbedding
 
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": "*"}})   # <-- Allow all origins & routes
+CORS(app, resources={r"/*": {"origins": "*"}})   
 
 ALLOWED_EXTENSIONS = {"jpg", "jpeg", "png"}
 
@@ -21,12 +21,12 @@ def train_student_model_async(usn, folder_path):
     except Exception as e:
         print(f"Error training model for {usn}: {e}")
 
-# Render the upload form
+
 @app.route("/upload", methods=["GET"])
 def upload_form():
     return render_template("upload.html")
 
-# Handle uploaded images
+
 @app.route("/upload_photos", methods=["POST"])
 def upload_photos():
     usn = request.form.get("usn")
@@ -37,7 +37,7 @@ def upload_photos():
     if not files or len(files) == 0:
         return jsonify({"status": "error", "message": "No images uploaded"}), 400
 
-    # Folder where student images are saved
+    
     save_dir = os.path.join(r"C:\ht\data\students", secure_filename(usn))
     os.makedirs(save_dir, exist_ok=True)
 
@@ -51,7 +51,7 @@ def upload_photos():
     if saved_count == 0:
         return jsonify({"status": "error", "message": "No valid image files uploaded"}), 400
 
-    # Start async training
+    
     threading.Thread(target=train_student_model_async, args=(usn, save_dir)).start()
 
     return jsonify({

@@ -13,7 +13,7 @@ from src.utils.logger import logging
 class FaecEmbeddingConfig:
     train_path: str = os.path.join("data", "students")
     val_path: str = os.path.join("data", "students")
-    output_path: str = os.path.join("C:/ht/embeddings")   # <--- embeddings will be stored here
+    output_path: str = os.path.join("C:/ht/embeddings")  
 
 
 class FaecEmbedding:
@@ -40,12 +40,12 @@ class FaecEmbedding:
                 if len(faces) == 0:
                     return None
 
-                # Pick the largest face
+                
                 faces = sorted(faces, key=lambda x: x.bbox[2] - x.bbox[0], reverse=True)
                 embedding = faces[0].normed_embedding  # 512-D vector
                 return embedding
 
-            # Process all images inside one folder (person)
+            # Process all images
             def folder_to_embeddings(person_name, folder_path):
                 embeddings = []
                 for file in os.listdir(folder_path):
@@ -58,7 +58,7 @@ class FaecEmbedding:
                 if len(embeddings) > 0:
                     mean_embedding = np.mean(embeddings, axis=0)
 
-                    # Save embeddings to disk
+                    
                     person_dir = os.path.join(self.config.output_path, person_name)
                     os.makedirs(person_dir, exist_ok=True)
 
@@ -69,7 +69,7 @@ class FaecEmbedding:
                 else:
                     return None, None
 
-            # Process the whole dataset (all persons)
+            # Process the data set
             def dataset_to_embeddings(dataset_path):
                 people_embeddings = {}
                 for person in os.listdir(dataset_path):

@@ -4,7 +4,7 @@ import sys
 import datetime
 from dataclasses import dataclass
 
-# add project root to sys.path so src can be imported when running directly
+
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")))
 
 from src.utils.logger import logging

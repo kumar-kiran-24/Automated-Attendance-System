@@ -118,14 +118,14 @@ class FaceRecognizer:
             results[img_name] = detected_names
             print(f"{img_name} → {detected_names} | saved to {save_path}")
 
-        return results 
+        return results  # return all results after processing folder
     
-     # return all results after processing folder
+    
 
 
 if __name__ == "__main__":
     fr = FaceRecognizer()
-    folder = r"C:\ht\raw_frames\2025_09_18_12_34_22"   # Replace with your input folder path
+    folder = r"C:\ht\raw_frames\2025_09_18_12_34_22"   
     results = fr.recognize_images_in_folder(folder)
     print("\nFinal Results:", results)
     logging.info(results)

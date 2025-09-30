@@ -16,7 +16,7 @@ class VideoToImage:
             # Get video name without extension
             video_name = os.path.splitext(os.path.basename(video_path))[0]
 
-            # Create output folder
+            
             output_dir = os.path.join("raw_frames", video_name)
             os.makedirs(output_dir, exist_ok=True)
 
@@ -74,10 +74,9 @@ class VideoToImage:
 
 # Example usage
 if __name__ == "__main__":
-    # Example 1: Single video
+   
     video_path = r"C:\ht\captured_data\video\2025_09_17_00_54_31.mp4"
     VideoToImage.video_to_frames(video_path, frame_skip=5)
 
-    # Example 2: All videos in a folder
     folder_path = r"C:\ht\captured_data\video"
     VideoToImage.process_folder(folder_path, frame_skip=10)
